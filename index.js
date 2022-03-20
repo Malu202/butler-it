@@ -23,8 +23,11 @@ let server = app.listen(process.env.PORT || 3000, () => {
 })
 
 async function forwardRequest(req, res) {
+    console.log("received request: " + req);
     let url = req.query.url;
-    let bodyString = JSON.stringify(req.body)
+    console.log("url: " + url);
+    let bodyString = JSON.stringify(req.body);
+    console.log("body: " + bodyString);
     fetch(url, {
         method: 'POST',
         headers: {
