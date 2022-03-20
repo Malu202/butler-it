@@ -11,5 +11,8 @@
     "node": "14.x"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^2"
+  }
 }
