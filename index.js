@@ -29,9 +29,9 @@ async function forwardRequest(req, res) {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: req.body
+        body: JSON.stringify(req.body)
     });
-    res.status(200).send("sending request: " + req.body);
+    res.status(200).send("sending request: " + JSON.stringify(req.body));
     // .then(res => res.text())
     // .then(body => {
     //     res.write("Glitch response:\n" + body);
