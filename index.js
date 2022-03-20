@@ -28,7 +28,7 @@ async function forwardRequest(req, res) {
         },
         body: req.body
     });
-    res.send("sending request");
+    res.status(200).send("sending request");
     // .then(res => res.text())
     // .then(body => {
     //     res.write("Glitch response:\n" + body);
