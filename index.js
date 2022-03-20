@@ -1,15 +1,22 @@
-const http = require("http")
+let express = require('express');
 const fetch = require('node-fetch');
 
+let app = express();
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
-const server = http.createServer((req, res) => {
-    if (req.url == '/') {
-        forwardRequest(req, res);
-    }
+app.get('/', function (req, res) {
+    forwardRequest(req, res);
 })
 
-server.listen(process.env.PORT || 3000, () => {
-    console.log("Server is Running")
+let server = app.listen(process.env.PORT || 3000, () => {
+    let host = server.address().address
+    let port = server.address().port
+    console.log("App listening at http://%s:%s", host, port)
 })
 
 async function forwardRequest(req, res) {
@@ -21,9 +28,7 @@ async function forwardRequest(req, res) {
         },
         body: req.body
     });
-    res.write("sending request");
-    res.statusCode = 200;
-    res.end();
+    res.send("sending request");
     // .then(res => res.text())
     // .then(body => {
     //     res.write("Glitch response:\n" + body);
