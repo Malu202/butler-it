@@ -23,19 +23,15 @@ let server = app.listen(process.env.PORT || 3000, () => {
 })
 
 async function forwardRequest(req, res) {
-    fetch('http://antischwitzomat.glitch.me/measurements', {
+    let url = req.query.url;
+    let bodyString = JSON.stringify(req.body)
+    fetch(url, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(req.body)
+        body: bodyString
     });
-    res.status(200).send("sending request: " + JSON.stringify(req.body));
-    // .then(res => res.text())
-    // .then(body => {
-    //     res.write("Glitch response:\n" + body);
-    //     res.statusCode = 200
-    //     res.end()
-    // });
+    res.status(200).send("sending to '" + url + "' the following request: \n" + bodyString);
 }
