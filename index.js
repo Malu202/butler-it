@@ -9,7 +9,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.get('/', function (req, res) {
+app.post('/', function (req, res) {
     forwardRequest(req, res);
 })
 
