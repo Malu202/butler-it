@@ -1,7 +1,10 @@
 let express = require('express');
+let bodyParser = require('body-parser');
+var jsonParser = bodyParser.json();
 const fetch = require('node-fetch');
 
 let app = express();
+app.use(bodyParser.json());
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
